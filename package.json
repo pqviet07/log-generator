@@ -1,0 +1,133 @@
+{
+  "name": "zrtc-log-generator",
+  "displayName": "ZRTC-Log-Generator by VietPQ4",
+  "description": "Auto create ZRTC Log",
+  "author": {
+    "name": "VietPQ4",
+    "email": "phungquocviet07@gmail.com",
+    "phone": "0917245416"
+  },
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:c",
+    "onLanguage:cpp"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "submenus": [
+      {
+        "id": "RTC_LOG.submenu",
+        "label": "RTC_LOG"
+      }
+    ],
+
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "RTC_LOG.submenu",
+          "group": "RTC_LOG group"
+        }
+      ],
+      "RTC_LOG.submenu": [
+        {
+          "command": "log-generator.generate-RTC-Log-Trace"
+        },
+        {
+          "command": "log-generator.generate-RTC-Log-Trace-With-Suffix"
+        },
+        {
+          "command": "log-generator.generate-RTC-Log-Error"
+        },
+        {
+          "command": "log-generator.generate-RTC-Log-Info"
+        },
+        {
+          "command": "log-generator.generate-RTC-Log-Warning"
+        },
+        {
+          "command": "log-generator.generate-RTC-Log-Verbose"
+        }
+      ]
+    },
+
+    "commands": [
+      {
+        "command": "log-generator.generate-RTC-Log-Trace",
+        "title": "LS_TRACE"
+      },
+      {
+        "command": "log-generator.generate-RTC-Log-Trace-With-Suffix",
+        "title": "LS_TRACE #order"
+      },
+      {
+        "command": "log-generator.generate-RTC-Log-Error",
+        "title": "LS_ERROR"
+      },
+      {
+        "command": "log-generator.generate-RTC-Log-Info",
+        "title": "LS_INFO"
+      },
+      {
+        "command": "log-generator.generate-RTC-Log-Warning",
+        "title": "LS_WARNING"
+      },
+      {
+        "command": "log-generator.generate-RTC-Log-Verbose",
+        "title": "LS_VERBOSE"
+      },
+      {
+        "command": "log-generator.updateSetting",
+        "title": "Log-Generator: update domain TAG"
+      }
+    ],
+
+    "keybindings": [
+      {
+          "command": "log-generator.generate-RTC-Log-Trace",
+          "key" : "ctrl+shift+v",
+          "mac": "cmd+shift+v",  
+          "when": "editorTextFocus"
+      },
+      {
+        "command": "log-generator.generate-RTC-Log-Trace-With-Suffix",
+        "mac": "ctrl+shift+l",  
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.87.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vscode/test-cli": "^0.0.6",
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.56.0",
+    "mocha": "^10.4.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "structured-clone": "^0.2.2"
+  }
+}
